@@ -1,22 +1,25 @@
 import json
-import pprint
 
 with open("que.json") as f:
     questions = json.load(f)
 
-pprint.pprint(questions)
+def print_enumerated_answers(answers):
+    for ans_num, answer in enumerate(answers, start=1):
+        print(f"[{ans_num}] {answer['answer']}")
 
-print("#" * 80)
+def main():
+   for question in questions['questions']:
+       print(question['prompt'])
+       answers = question['answers']
 
-pprint.pprint(questions['questions'][0]['prompt'])
-i = 1
-for ans in questions['questions'][0]['answers']:
-    print(f"[{i}] {ans['answer']}")
-    i += 1
-guess = input("Ditt svar: ")
+       print_enumerated_answers(answers)
+       user_answer = int(input(">"))
 
-if guess == questions['questions'][0]['answers'][0]:
-    print(f"Rätt!!!" )
-else:
-    print(f"Fel, rätt svar är {questions['questions'][0]['answers'][0]}")
+       if answers[user_answer - 1]['correct']:
+           print("Rätt")
+       else:
+           print("Fel")
 
+if __name__ == '__main__':
+    main()
+    
