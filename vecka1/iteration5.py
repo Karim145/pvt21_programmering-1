@@ -7,7 +7,7 @@ data_List_questions = response.json() # hämtar all data i jason format
 lis_id=[]
 for i in range(0,len(data_List_questions['questions'])):
     lis_id.append(i)  #Skapa en lista med numren på alla frågor
-randomlist = random.sample(lis_id, k=2) #gör en random lista med 10 sifrror från listan övan på 
+randomlist = random.sample(lis_id, k=10) #gör en random lista med 10 sifrror från listan övan på 
 list_svarade_fel_questions=[]
 list_of_din_fel_svar=[]
 def check_correct_input(answer,antal_svar):
